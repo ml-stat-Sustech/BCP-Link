@@ -3,9 +3,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/ml-stat-Sustech/BCP-Link"><img src="https://img.shields.io/badge/Evaluation-112D4E?style=for-the-badge&logo=github&logoColor=white" alt="Evaluation" width="141" height="28"></a>
-  <a href="https://ml-stat-sustech.github.io/bcp-link-leaderboard/"><img src="https://img.shields.io/badge/Leaderboard-1F6F78?style=for-the-badge&logo=googleanalytics&logoColor=white" alt="Leaderboard" width="141" height="28"></a>
-  <a href="https://huggingface.co/datasets/SUSTech/BCP-Link-corpus"><img src="https://img.shields.io/badge/Dataset-8A6A24?style=for-the-badge&logo=huggingface&logoColor=white" alt="Dataset" width="141" height="28"></a>
+  <a href="https://github.com/ml-stat-Sustech/BCP-Link"><img src="https://img.shields.io/badge/Evaluation-112D4E?style=for-the-badge&logo=github&logoColor=white" alt="Evaluation"></a>
+  <a href="https://ml-stat-sustech.github.io/bcp-link-leaderboard/"><img src="https://img.shields.io/badge/Leaderboard-1F6F78?style=for-the-badge&logo=googleanalytics&logoColor=white" alt="Leaderboard"></a>
+  <a href="https://huggingface.co/datasets/SUSTech/BCP-Link-corpus"><img src="https://img.shields.io/badge/Dataset-8A6A24?style=for-the-badge&logo=huggingface&logoColor=white" alt="Dataset"></a>
 </p>
 
 <p align="center">
