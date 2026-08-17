@@ -16,12 +16,14 @@
 
 **BrowseComp-Plus-Link (BCP-Link)** is a benchmark for evaluating how effectively search agents can use hyperlinks to discover evidence beyond initial search results in an offline, fully reproducible search environment. Built on [BrowseComp-Plus](https://arxiv.org/pdf/2508.06600), it recovers 63,371 verified links among the fixed corpus of 100,195 offline webpages. These links are inserted directly into the document text and exposed through standardized `search` and `visit` tools, enabling controlled analysis of whether search agents can recognize useful links, navigate across documents, gather relevant evidence, and reach the correct answer efficiently.
 
-BCP-Link contains:
+The current release includes:
 
-- **6.5 GB** corpus data
+- **6.5 GB** uncompressed corpus data
 - **13.8 MB** link metadata
 - **100,195** offline webpages
 - **63,371** verified in-corpus hyperlinks
+- **17,633** documents with at least one incoming or outgoing link, representing **17.60%** graph participation
+- **4.59** outgoing links per document with outgoing links on average
 
 ## 🏆 LeaderBoard
 
