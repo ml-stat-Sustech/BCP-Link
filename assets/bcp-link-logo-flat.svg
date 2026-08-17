@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">BCP-Link logo</title>
+  <desc id="desc">An open ring surrounding three linked document pages, ending at a gold evidence node.</desc>
+
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path
+      d="M715 149C554 66 357 91 226 225C78 376 79 620 230 771C381 922 625 923 777 772C864 685 903 568 885 455"
+      stroke="#112D4E"
+      stroke-width="58"
+    />
+
+    <g stroke="#112D4E" stroke-width="30">
+      <g transform="translate(214 584) rotate(-8 100 120)">
+        <path d="M27 14H132L187 69V218C187 230 177 240 165 240H27C15 240 5 230 5 218V36C5 24 15 14 27 14Z" />
+        <path d="M132 14V69H187" />
+        <path d="M47 117H139" stroke-width="24" />
+        <path d="M47 164H121" stroke-width="24" />
+      </g>
+
+      <g transform="translate(408 385) rotate(1 105 125)">
+        <path d="M27 14H142L202 74V228C202 240 192 250 180 250H27C15 250 5 240 5 228V36C5 24 15 14 27 14Z" />
+        <path d="M142 14V74H202" />
+        <path d="M49 124H151" stroke-width="24" />
+        <path d="M49 174H132" stroke-width="24" />
+      </g>
+
+      <g transform="translate(611 187) rotate(8 100 120)">
+        <path d="M27 14H132L187 69V218C187 230 177 240 165 240H27C15 240 5 230 5 218V36C5 24 15 14 27 14Z" />
+        <path d="M132 14V69H187" />
+        <path d="M47 117H139" stroke-width="24" />
+        <path d="M47 164H121" stroke-width="24" />
+      </g>
+    </g>
+
+    <path
+      d="M192 804C236 765 267 733 305 702C371 648 445 588 511 516C580 441 638 372 704 319C757 277 789 224 817 170"
+      stroke="#C58A18"
+      stroke-width="28"
+    />
+
+    <g fill="#C58A18" stroke="#112D4E">
+      <circle cx="305" cy="702" r="24" stroke-width="16" />
+      <circle cx="511" cy="516" r="24" stroke-width="16" />
+      <circle cx="704" cy="319" r="24" stroke-width="16" />
+      <circle cx="817" cy="170" r="50" stroke-width="20" />
+    </g>
+  </g>
+</svg>

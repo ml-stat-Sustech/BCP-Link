@@ -1,0 +1,139 @@
+# Canonical BCP-Link evaluation config for an OpenAI-compatible model endpoint.
+
+defaults:
+  - _self_
+
+task_retry_policy:
+  max_tries: 3
+
+agent:
+  llm_client:
+    type: openai
+    model: ${oc.env:MODEL_PATH,/your/model/path}
+    default_kwargs:
+      temperature: 1.0
+      top_p: 1.0
+      max_tokens: 8192
+    api_key: ${oc.env:LLM_API_KEY,a}
+    base_url: ${oc.decode:${oc.env:LLM_BASE_URLS,'["http://127.0.0.1:8000/v1"]'}}
+    concurrency_limit: 1
+    extra_client_kwargs: null
+  parser:
+    type: upstream
+  sources:
+    - name: elasticsearch
+      type: elasticsearch
+      hosts: ["${oc.env:ELASTICSEARCH_URL,http://127.0.0.1:9200}"]
+      index: browsecomp_plus_link_qwen3_embedding_8b
+      search_fields: ["title", "text"]
+      es_max_concurrency: 1
+      embedding_max_concurrency: 1
+      title_field: title
+      text_field: text
+      url_field: url
+      fetch_field: url
+      highlight: true
+      snippet_chars: 1024
+      vector_search_mode: hybrid
+      vector_num_candidates: 50
+      embedding_prefix: |
+        Instruct: Given a web search query, retrieve relevant passages that answer the query
+        Query:
+      embedding_model: ${oc.env:EMBEDDING_MODEL_PATH,/your/embedding/model/path}
+      embedding_api_key: ${oc.env:EMBEDDING_API_KEY,a}
+      embedding_base_url: ${oc.env:EMBEDDING_BASE_URL,http://127.0.0.1:8001/v1}
+  tools:
+    - type: search
+      name: search
+      description: Search for more information.
+      inputSchema:
+        type: object
+        properties:
+          query:
+            type: string
+        required:
+          - query
+        additionalProperties: false
+      source:
+        - elasticsearch
+      default_top_k: 5
+      raise_argument_validation_error: false
+
+    - type: visit
+      name: visit
+      description: Fetch the full local document. Pass a URL found in a snippet/document.
+      inputSchema:
+        type: object
+        properties:
+          document_id:
+            type: string
+          goal:
+            type: string
+        required:
+          - document_id
+        additionalProperties: false
+      source:
+        - elasticsearch
+      response_char_limit: 40000
+      raise_argument_validation_error: false
+  system_prompt: |
+    You are a helpful AI assistant that can search for information to answer questions accurately.
+
+    When answering questions:
+    1. Use the available search tools to find relevant and reliable information.
+    2. Synthesize information from multiple sources when needed.
+    3. Provide accurate and comprehensive answers based on your search results.
+    4. Do not use Chinese in your responses, keep using English only.
+    5. Do not search the same query multiple times.
+    6. Use visit with URL values copied from search results. If a snippet or visited document contains a clearly relevant URL, you may pass that URL to visit.
+    7. Do not change URLs in search results or visited documents.
+    8. Do not call tools inside <think></think>.
+    9. Always put your final answer in \boxed{} format
+    For example:
+    - If the answer is "American", write: \boxed{American}
+    - If the answer is "yes", write: \boxed{yes}
+    - If the answer is a year like "1985", write: \boxed{1985}
+
+  query_prompt: "<question>{query}</question>"
+  max_turn: 50
+  max_turn_prompt: "You have now reached the maximum tool call turns you can handle. You should stop making tool calls and, based on all the information above, think again and provide what you consider the most likely answer in the following format:\n\\boxed{your answer}"
+  max_tokens: 131072
+  max_tokens_prompt: "You have now reached the maximum context length you can handle. You should stop making tool calls and, based on all the information above, think again and provide what you consider the most likely answer in the following format:\n\\boxed{your answer}"
+  max_tokens_prompt_margin: 8192
+  llm_retry_config:
+    max_tries: 5
+    exceptions:
+      - pkg://searcherkit.llm.parsers:ParsingError
+  tool_retry_config:
+    max_tries: 5
+    exceptions:
+      - pkg://searcherkit.common.errors:RecoverableError
+
+dataloader:
+  source: ${oc.env:BCP_LINK_DATASET,data/browsecomp_plus_decrypted_qa.jsonl}
+  input_key: query
+  answer_key: answer
+  extra_keys:
+    - query_id
+    - evidence_docs
+  max_items: null
+
+max_concurrency: 1
+output_path: ${oc.env:OUTPUT_PATH,outputs/bcp-link}
+overwrite_output: false
+
+checkpoint:
+  enabled: true
+  dir: null
+  resume: true
+  filename: manifest.json
+  require_output_for_completed: true
+
+logging:
+  global_file: ${output_path}/run.log
+  trace:
+    enabled: true
+    dir: ${output_path}/traces
+    format: text
+    level: DEBUG
+    filename_template: "{sample_id}_{trace_id}.log"
