@@ -266,6 +266,7 @@ Keep the canonical benchmark fields, retrieval behavior, prompts, and tool limit
 ## 👤 The Team
 
 BCP-Link is built and maintained by the group of Assistant Professor [Wei Hongxin](https://hongxin001.github.io/) and Professor [Jing Bingyi](https://sai.cuhk.edu.cn/en/teacher/162) in SUSTech and CUHK-SZ.
+
 Core maintainers: [Yu Zhengye](https://github.com/NZhengye), [Hao Sai](https://github.com/Samanthe-H), [Shi Shunuo](https://github.com/iamorfevre).
 
 
