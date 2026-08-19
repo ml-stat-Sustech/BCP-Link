@@ -263,6 +263,11 @@ Contributions that improve reproducibility, interoperability, adapters, parsers,
 
 Keep the canonical benchmark fields, retrieval behavior, prompts, and tool limits unchanged when reporting comparable results. Do not commit credentials, generated outputs, local caches, or private benchmark data.
 
+## 👤 The Team
+
+BCP-Link is built and maintained by the group of Assistant Professor [Wei Hongxin](https://hongxin001.github.io/) and Professor [Jing Bingyi](https://sai.cuhk.edu.cn/en/teacher/162) in SUSTech and CUHK-SZ.
+Core maintainers: [Yu Zhengye](https://github.com/NZhengye), [Hao Sai](https://github.com/Samanthe-H), [Shi Shunuo](https://github.com/iamorfevre).
+
 
 ## 📄 License
 
